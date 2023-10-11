@@ -1,22 +1,28 @@
-import DogCard from "../DogCard/DogCard";
+import { DogCard, Pagination } from "../index.components";
 import StyledCards from "./DogCards.module.css";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addAll, sliceDogs } from "../../redux/actions";
 
 export default function DogCards() {
-  const [pagedDogs, setDogs] = useState([]);
+  const [page, setPage] = useState(1);
+  const dispatch = useDispatch();
+
+  let dogsToDisplay = useSelector((state) => state.pgDogs);
+
+  // In case of refresh or entering directly to /home from URL.
+  if (!dogsToDisplay.length) {
+    dispatch(addAll());
+  }
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/dogs")
-      .then((data) => setDogs(data.data.splice(0, 8)))
-      .catch((error) => console.log(error));
-  }, []);
+    dispatch(sliceDogs(page));
+  }, [page]);
 
   return (
     <div className={StyledCards.cardsMain}>
-      <p>I'm the one who shows the cards</p>
-      {pagedDogs.map((dog) => (
+      <Pagination setPage={setPage} />
+      {dogsToDisplay.map((dog) => (
         <DogCard dog={dog} key={dog.id} />
       ))}
     </div>

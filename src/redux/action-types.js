@@ -1,0 +1,5 @@
+const ADD_ALL = "ADD_ALL";
+const SEARCH_DOG = "SEARCH_DOG";
+const SLICE_DOGS = "SLICE_DOGS";
+
+export { ADD_ALL, SEARCH_DOG, SLICE_DOGS };

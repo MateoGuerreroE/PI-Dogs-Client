@@ -1,13 +1,12 @@
 import StyledHome from "./home.module.css";
-import DogCards from "../DogCards/DogCards";
+// import DogCards from "../DogCards/DogCards";
+// import SearchBar from "../SearchBar/SearchBar";
+import { DogCards, SearchBar } from "../index.components";
 
 export default function Home() {
   return (
     <div className={StyledHome.homeMain}>
-      <div>
-        <label htmlFor="">Search</label>
-        <input type="text" />
-      </div>
+      <SearchBar />
       <DogCards />
     </div>
   );
