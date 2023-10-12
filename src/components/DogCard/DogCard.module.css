@@ -1,3 +1,11 @@
 .cardMain {
-  color: black;
+  display: flex;
+  flex-direction: column;
+  height: 40vh;
+  width: 20vw;
+  padding: 2em;
+}
+
+.cardMain p {
+  margin: 5px;
 }

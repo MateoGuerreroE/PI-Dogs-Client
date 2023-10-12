@@ -1,3 +1,3 @@
-import sliceDogs from "./pageHelper";
+import sliceArray from "./pageHelper";
 
-export { sliceDogs };
+export { sliceArray };

@@ -1,6 +1,5 @@
-export default function sliceDogs(page) {
-  const prev = page - 1;
-  const from = prev * 8;
-  const to = from + 8;
-  return [from, to];
+export default function sliceArray(currentPage, postsPerPage) {
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  return [indexOfFirstPost, indexOfLastPost];
 }

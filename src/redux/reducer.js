@@ -1,5 +1,5 @@
 import { ADD_ALL, SEARCH_DOG, SLICE_DOGS } from "./action-types";
-import { sliceDogs } from "../handlers";
+import { sliceArray } from "../handlers";
 
 const initialState = {
   allDogs: [],
@@ -7,22 +7,27 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case ADD_ALL:
+      const { data, visiblePosts } = payload;
+      console.log(visiblePosts);
       return {
-        allDogs: action.payload,
-        pgDogs: action.payload.slice(0, 8),
+        allDogs: data,
+        pgDogs: data.slice(0, visiblePosts),
       };
     case SEARCH_DOG:
       return {
         ...state,
-        pgDogs: [action.payload],
+        pgDogs: [payload],
       };
 
     case SLICE_DOGS:
       return {
         ...state,
-        pgDogs: state.allDogs.slice(...sliceDogs(action.payload)),
+        pgDogs: state.allDogs.slice(
+          ...sliceArray(payload.currentPage, payload.postsPerPage)
+        ),
       };
 
     default:

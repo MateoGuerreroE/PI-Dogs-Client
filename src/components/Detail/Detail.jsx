@@ -7,6 +7,7 @@ export default function Detail() {
   const [dog, setDog] = useState([]);
   const { id } = useParams();
 
+  //* Would be easier to bring the data directly from the status but GET /dogs/:idRaza would be useless
   useEffect(() => {
     async function fetchData() {
       try {
@@ -24,9 +25,12 @@ export default function Detail() {
   return (
     <div>
       <p>ID: {dog.id}</p>
-      <img src="" alt={dog.name} />
+      {dog.name ? <img src={dog.image.url} alt={dog.name} /> : null}
       <p>Nombre: {dog.name}</p>
-      {dog.height ? <p>Altura: {dog.height.metric}</p> : null}
+      {dog.height ? <p>Altura: {dog.height.metric} cm</p> : <p>Altura: </p>}
+      {dog.weight ? <p>Peso: {dog.weight.metric} kg</p> : <p>Peso: </p>}
+      <p>Temperamentos: {dog.temperament}</p>
+      <p>Años de vida: {dog.life_span}</p>
     </div>
   );
 }
