@@ -1,5 +1,5 @@
 import style from "./Pagination.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Pagination(props) {
   const [currentButton, setButton] = useState(1);

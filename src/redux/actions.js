@@ -1,15 +1,15 @@
 import axios from "axios";
 
-import { ADD_ALL, SEARCH_DOG, SLICE_DOGS } from "./action-types";
+import { ADD_ALL, ORDER_DOGS, SEARCH_DOG, SLICE_DOGS } from "./action-types";
 
-export function addAll(visiblePosts) {
+export function addAll() {
   const endpoint = `http://${window.location.hostname}:3001/dogs`;
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);
       return dispatch({
         type: ADD_ALL,
-        payload: { data: data, visiblePosts: visiblePosts },
+        payload: data,
       });
     } catch (error) {
       alert("Error reaching dogs data");
@@ -33,5 +33,12 @@ export function sliceDogs(currentPage, postsPerPage) {
   return {
     type: SLICE_DOGS,
     payload: { currentPage: currentPage, postsPerPage: postsPerPage },
+  };
+}
+
+export function orderDogs(param, order) {
+  return {
+    type: ORDER_DOGS,
+    payload: { param: param, order: order },
   };
 }
