@@ -1,5 +1,5 @@
 import { ADD_ALL, ORDER_DOGS, SEARCH_DOG, SLICE_DOGS } from "./action-types";
-import { sliceArray, sortingByName } from "../handlers";
+import { sliceArray, sortingByName, sortingByWeight } from "../helpers";
 
 const initialState = {
   allDogs: [],
@@ -38,6 +38,14 @@ export default function reducer(state = initialState, action) {
         }
         if (order === "desc") {
           result = sortingByName(state.allDogs.slice()).reverse();
+        }
+      }
+      if (param === "weight") {
+        if (order === "asc") {
+          result = sortingByWeight(state.allDogs.slice());
+        }
+        if (order === "desc") {
+          result = sortingByWeight(state.allDogs.slice()).reverse();
         }
       }
       return {

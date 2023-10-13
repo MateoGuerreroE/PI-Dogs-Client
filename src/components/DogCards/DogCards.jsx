@@ -1,8 +1,8 @@
 import StyledCards from "./DogCards.module.css";
-import { DogCard, Pagination } from "../index.components";
+import { DogCard, Filtering, Pagination } from "../index.components";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addAll, sliceDogs, orderDogs } from "../../redux/actions";
+import { addAll, sliceDogs } from "../../redux/actions";
 
 export default function DogCards() {
   // LOCAL STATES
@@ -24,8 +24,8 @@ export default function DogCards() {
   // VARIABLES
   let totalPages = Math.ceil(allDogs.length / visiblePosts);
 
-  //! Conditional in case user does not enter from landing.
   if (!allDogs.length) {
+    //* In case user enters home directly or page reload.
     dispatch(addAll());
   }
 
@@ -46,12 +46,7 @@ export default function DogCards() {
 
   return (
     <div>
-      <button onClick={() => dispatch(orderDogs("name", "asc"))}>
-        Order asc
-      </button>
-      <button onClick={() => dispatch(orderDogs("name", "desc"))}>
-        Order desc
-      </button>
+      {dogsToDisplay.length > 1 ? <Filtering /> : null}
       {dogsToDisplay.length > 1 ? (
         <select defaultValue={visiblePosts} onChange={handleAmmountPosted}>
           <option value="8">8</option>

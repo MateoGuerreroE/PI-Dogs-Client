@@ -7,6 +7,7 @@ import SearchBar from "./SearchBar/SearchBar";
 import Pagination from "./Pagination/Pagination";
 import DogCard from "./DogCard/DogCard";
 import DogCards from "./DogCards/DogCards";
+import Filtering from "./Filtering/Filtering";
 
 export {
   Home,
@@ -18,4 +19,5 @@ export {
   Pagination,
   DogCard,
   DogCards,
+  Filtering,
 };
