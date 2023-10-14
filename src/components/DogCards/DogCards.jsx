@@ -21,7 +21,8 @@ export default function DogCards() {
   let dogsToDisplay = useSelector((state) => state.pgDogs);
   let allDogs = useSelector((state) => state.filteredDogs);
 
-  // VARIABLES
+  // VARIABLES AND HELPERS
+
   let totalPages = Math.ceil(allDogs.length / visiblePosts);
 
   if (!allDogs.length) {
@@ -38,26 +39,21 @@ export default function DogCards() {
     sessionStorage.setItem("currentPage", currentPage);
   }, [currentPage, visiblePosts, allDogs]);
 
-  // HANDLERS
-
-  function handleAmmountPosted(event) {
-    setVisiblePosts(Number(event.target.value));
-  }
+  // RENDER
 
   return (
     <div>
-      {dogsToDisplay.length > 1 ? <Filtering /> : null}
       {dogsToDisplay.length > 1 ? (
-        <select defaultValue={visiblePosts} onChange={handleAmmountPosted}>
-          <option value="8">8</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
-        </select>
+        <div>
+          <Filtering />
+          <Pagination
+            setPage={setPage}
+            totalPages={totalPages}
+            setVisiblePosts={setVisiblePosts}
+            visiblePosts={visiblePosts}
+          />
+        </div>
       ) : null}
-      {dogsToDisplay.length > 1 ? (
-        <Pagination setPage={setPage} totalPages={totalPages} />
-      ) : null}
-
       <div className={StyledCards.cardsMain}>
         {dogsToDisplay.map((dog) => (
           <DogCard dog={dog} key={dog.id} />

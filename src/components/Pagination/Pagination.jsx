@@ -2,16 +2,35 @@ import style from "./Pagination.module.css";
 import { useState } from "react";
 
 export default function Pagination(props) {
+  // LOCAL STATES
   const [currentButton, setButton] = useState(1);
   const { totalPages } = props;
+
+  // HANDLERS
 
   function handleClick(event) {
     props.setPage(Number(event.target.innerHTML));
     setButton(Number(event.target.innerHTML));
   }
 
+  function handleAmmountPosted(event) {
+    props.setVisiblePosts(Number(event.target.value));
+  }
+
+  // RENDER
+
   return (
     <div>
+      <div>
+        <select
+          defaultValue={props.visiblePosts}
+          onChange={handleAmmountPosted}
+        >
+          <option value="8">8</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
+      </div>
       <button onClick={handleClick}>1</button>
       {currentButton < 6 ? (
         <div>
