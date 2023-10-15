@@ -34,7 +34,7 @@ export default function reducer(state = initialState, action) {
       let result = [];
       if (param === "name") {
         if (order === "asc") {
-          result = state.allDogs; // Dogs come from API already ordened by name
+          result = sortingByName(state.allDogs.slice()); // Dogs come from API already ordened by name
         }
         if (order === "desc") {
           result = sortingByName(state.allDogs.slice()).reverse();
