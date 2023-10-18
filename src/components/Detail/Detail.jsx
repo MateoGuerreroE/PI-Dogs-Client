@@ -39,41 +39,21 @@ export default function Detail() {
     currentPage = Number(sessionStorage.getItem("dogsToDisplay"));
   }, [pagedDogs]);
 
-  console.log(dog);
-
   // RENDER
 
   return (
     <div>
       <Link to="/home">Return</Link>
       <p>ID: {dog.id}</p>
-      {dog.image ? (
-        dog.image.url ? (
-          <img src={dog.image.url} alt={dog.name} />
-        ) : (
-          <img src={dog.image} alt={dog.name} />
-        )
-      ) : null}
+      <img src={dog.image} alt={dog.name} />
       <p>Nombre: {dog.name}</p>
-      {dog.height ? (
-        dog.height.metric ? (
-          <p>Altura: {dog.height.metric} cm</p>
-        ) : (
-          <p>Altura: {dog.height} cm</p>
-        )
+      <p>Altura: {dog.height} cm</p>
+      <p>Peso: {dog.height} kg</p>
+      {dog.temperament ? (
+        <p>Temperamentos: {dog.temperament.join(", ")}</p>
       ) : (
-        <p>Altura: </p>
+        <p>Temperamentos: </p>
       )}
-      {dog.weight ? (
-        dog.weight.metric ? (
-          <p>Peso: {dog.weight.metric} kg</p>
-        ) : (
-          <p>Peso: {dog.height} kg</p>
-        )
-      ) : (
-        <p>Peso: </p>
-      )}
-      <p>Temperamentos: {dog.temperament}</p>
       <p>Años de vida: {dog.life_span}</p>
     </div>
   );

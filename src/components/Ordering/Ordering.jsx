@@ -1,8 +1,8 @@
-import style from "./Filtering.module.css";
+import style from "./Ordering.module.css";
 import { useDispatch } from "react-redux";
 import { orderDogs } from "../../redux/actions";
 
-export default function Filtering() {
+export default function Ordering() {
   const dispatch = useDispatch();
 
   function handleClick(event) {

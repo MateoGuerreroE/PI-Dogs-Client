@@ -4,18 +4,8 @@ import { useEffect } from "react";
 
 export default function SearchBar() {
   // GLOBAL STATES
-  const dipslayedDogs = useSelector((state) => state.pgDogs);
+  const dipslayedDogs = useSelector((state) => state.filteredDogs);
   const dispatch = useDispatch();
-
-  // UTILS (storage)
-
-  let visiblePosts;
-
-  // DIS/MOUNT/UPDATE
-
-  useEffect(() => {
-    visiblePosts = Number(sessionStorage.getItem("visiblePosts"));
-  }, [dipslayedDogs]);
 
   // HANDLERS
 
@@ -24,8 +14,6 @@ export default function SearchBar() {
     if (value) {
       dispatch(searchDog(value));
     } else {
-      // If user searches with no text on input restores allDogs
-      dispatch(addAll(visiblePosts));
       alert("Introduce una raza para poder buscarla");
     }
   }
@@ -38,7 +26,7 @@ export default function SearchBar() {
       <input id="S_input" type="text" />
       <button onClick={handleClick}>Search</button>
       {dipslayedDogs.length < 2 ? (
-        <button onClick={() => dispatch(addAll(visiblePosts))}>X</button>
+        <button onClick={() => dispatch(addAll())}>X</button>
       ) : null}
     </div>
   );

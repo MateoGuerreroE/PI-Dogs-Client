@@ -7,8 +7,20 @@ import {
   Detail,
   CreateDog,
 } from "./components/index.components";
+import { useEffect } from "react";
+import { addAll, updateAttitudes } from "./redux/actions";
+import { useDispatch } from "react-redux";
 
 function App() {
+  //GLOBAL STATE SET
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(addAll());
+    dispatch(updateAttitudes());
+  }, []);
+
+  // RENDER
   return (
     <>
       <div className="App">

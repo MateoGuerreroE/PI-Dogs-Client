@@ -1,8 +1,8 @@
 import StyledCards from "./DogCards.module.css";
-import { DogCard, Filtering, Pagination } from "../index.components";
+import { DogCard, Ordering, Pagination } from "../index.components";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addAll, sliceDogs } from "../../redux/actions";
+import { sliceDogs } from "../../redux/actions";
 
 export default function DogCards() {
   // LOCAL STATES
@@ -25,11 +25,6 @@ export default function DogCards() {
 
   let totalPages = Math.ceil(allDogs.length / visiblePosts);
 
-  if (!allDogs.length) {
-    //* In case user enters home directly or page reload.
-    dispatch(addAll());
-  }
-
   // ON MOUNT/DISMOUNT/UPDATE
 
   useEffect(() => {
@@ -43,17 +38,13 @@ export default function DogCards() {
 
   return (
     <div>
-      {dogsToDisplay.length > 1 ? (
-        <div>
-          <Filtering />
-          <Pagination
-            setPage={setPage}
-            totalPages={totalPages}
-            setVisiblePosts={setVisiblePosts}
-            visiblePosts={visiblePosts}
-          />
-        </div>
-      ) : null}
+      <Ordering />
+      <Pagination
+        setPage={setPage}
+        totalPages={totalPages}
+        setVisiblePosts={setVisiblePosts}
+        visiblePosts={visiblePosts}
+      />
       <div className={StyledCards.cardsMain}>
         {dogsToDisplay.map((dog) => (
           <DogCard dog={dog} key={dog.id} />
