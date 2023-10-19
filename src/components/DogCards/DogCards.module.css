@@ -2,4 +2,27 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 2rem;
+}
+
+.pages_order {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 5rem;
+  background-color: white;
+}
+
+.CardsContainer {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.splashIMG {
+  position: fixed;
+  top: -5%;
+  z-index: -1;
+  overflow: hidden;
 }

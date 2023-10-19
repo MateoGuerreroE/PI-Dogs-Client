@@ -3,6 +3,7 @@ import { DogCard, Ordering, Pagination } from "../index.components";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sliceDogs } from "../../redux/actions";
+import splashbckg from "../../content/bckgSplash.svg";
 
 export default function DogCards() {
   // LOCAL STATES
@@ -37,14 +38,17 @@ export default function DogCards() {
   // RENDER
 
   return (
-    <div>
-      <Ordering />
-      <Pagination
-        setPage={setPage}
-        totalPages={totalPages}
-        setVisiblePosts={setVisiblePosts}
-        visiblePosts={visiblePosts}
-      />
+    <div className={StyledCards.CardsContainer}>
+      <img src={splashbckg} alt="" className={StyledCards.splashIMG} />
+      <div className={StyledCards.pages_order}>
+        <Ordering />
+        <Pagination
+          setPage={setPage}
+          totalPages={totalPages}
+          setVisiblePosts={setVisiblePosts}
+          visiblePosts={visiblePosts}
+        />
+      </div>
       <div className={StyledCards.cardsMain}>
         {dogsToDisplay.map((dog) => (
           <DogCard dog={dog} key={dog.id} />

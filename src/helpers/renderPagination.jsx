@@ -9,8 +9,10 @@ export default function renderPagination(
 ) {
   if (TotalPages > 7) {
     return (
-      <div className={style.container}>
-        <div>
+      <div className={style.pageContainer}>
+        <p className={style.current}>Page: {localState}</p>
+        <div className={style.postSelector}>
+          <p>Dogs per page: </p>
           <select
             defaultValue={
               sessionStorage.getItem("visiblePosts") || visiblePosts
@@ -23,9 +25,14 @@ export default function renderPagination(
           </select>
         </div>
         <div className={style.Pages}>
-          <button onClick={functionClick}>1</button>
+          {localState === 1 ? null : (
+            <a className={style.prev} onClick={functionClick} id="prev"></a>
+          )}
+          <button id={style.mainpage} onClick={functionClick}>
+            1
+          </button>
           {localState < 6 ? (
-            <div>
+            <div className={style.middlepages}>
               <button onClick={functionClick}>2</button>
               <button onClick={functionClick}>3</button>
               <button onClick={functionClick}>4</button>
@@ -34,7 +41,7 @@ export default function renderPagination(
               <p>...</p>
             </div>
           ) : localState < TotalPages - 3 ? (
-            <div>
+            <div className={style.middlepages}>
               <p>...</p>
               <button onClick={functionClick}>{localState - 2}</button>
               <button onClick={functionClick}>{localState - 1}</button>
@@ -46,9 +53,8 @@ export default function renderPagination(
           ) : null}
 
           {localState > TotalPages - 4 ? (
-            <div>
+            <div className={style.middlepages}>
               <p>...</p>
-
               <button onClick={functionClick}>{TotalPages - 4}</button>
               <button onClick={functionClick}>{TotalPages - 3}</button>
               <button onClick={functionClick}>{TotalPages - 2}</button>
@@ -56,32 +62,49 @@ export default function renderPagination(
             </div>
           ) : null}
           <button onClick={functionClick}>{TotalPages}</button>
+          {localState === TotalPages ? null : (
+            <a className={style.next} onClick={functionClick} id="next"></a>
+          )}
         </div>
       </div>
     );
   }
   if (TotalPages === 7) {
     return (
-      <div>
-        <button onClick={functionClick}>1</button>
-        <button onClick={functionClick}>2</button>
-        <button onClick={functionClick}>3</button>
-        <button onClick={functionClick}>4</button>
-        <button onClick={functionClick}>5</button>
-        <button onClick={functionClick}>6</button>
-        <button onClick={functionClick}>{TotalPages}</button>
+      <div className={style.pageContainer}>
+        <div className={style.Pages}>
+          <button onClick={functionClick}>1</button>
+          <button onClick={functionClick}>2</button>
+          <button onClick={functionClick}>3</button>
+          <button onClick={functionClick}>4</button>
+          <button onClick={functionClick}>5</button>
+          <button onClick={functionClick}>6</button>
+          <button onClick={functionClick}>{TotalPages}</button>
+        </div>
       </div>
     );
   }
   if (TotalPages < 7) {
     return (
-      <div>
-        <button onClick={functionClick}>1</button>
-        {TotalPages - 1 > 0 ? <button onClick={functionClick}>2</button> : null}
-        {TotalPages - 2 > 0 ? <button onClick={functionClick}>3</button> : null}
-        {TotalPages - 3 > 0 ? <button onClick={functionClick}>4</button> : null}
-        {TotalPages - 4 > 0 ? <button onClick={functionClick}>5</button> : null}
-        {TotalPages - 5 > 0 ? <button onClick={functionClick}>6</button> : null}
+      <div className={style.pageContainer}>
+        <div className={style.Pages}>
+          <button onClick={functionClick}>1</button>
+          {TotalPages - 1 > 0 ? (
+            <button onClick={functionClick}>2</button>
+          ) : null}
+          {TotalPages - 2 > 0 ? (
+            <button onClick={functionClick}>3</button>
+          ) : null}
+          {TotalPages - 3 > 0 ? (
+            <button onClick={functionClick}>4</button>
+          ) : null}
+          {TotalPages - 4 > 0 ? (
+            <button onClick={functionClick}>5</button>
+          ) : null}
+          {TotalPages - 5 > 0 ? (
+            <button onClick={functionClick}>6</button>
+          ) : null}
+        </div>
       </div>
     );
   }

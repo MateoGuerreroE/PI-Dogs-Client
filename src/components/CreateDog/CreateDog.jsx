@@ -5,6 +5,7 @@ import { addAll } from "../../redux/actions";
 import { validateForm } from "../../helpers";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import bone from "../../content/bone.svg";
 
 export default function CreateDog() {
   //LOCAL STATES
@@ -68,7 +69,7 @@ export default function CreateDog() {
       name: dogToPost.name,
       height: `${dogToPost.minHeight} - ${dogToPost.maxHeight}`,
       weight: `${dogToPost.minWeight} - ${dogToPost.maxWeight}`,
-      life_span: `${dogToPost.life_span1} - ${dogToPost.life_span2}`,
+      life_span: `${dogToPost.life_span1} - ${dogToPost.life_span2} years`,
       image: `${dogToPost.image}`,
       temperament: dogToPost.temperament,
     };
@@ -79,10 +80,12 @@ export default function CreateDog() {
       navigate("/home");
     } else {
       document.getElementById("name").value = "";
-      alert("La raza que intentas agregar ya existe! Debes agregar una nueva");
+      alert(
+        "The breed name you are trying to add already exists! Try a new one"
+      );
       setErrors({
         ...errors,
-        name: "El nombre solo debe contener letras, no se permiten numeros o caracteres especiales.",
+        name: "Name must contain only letters, no special characters nor numbers",
         message: "Complete corrently all information to submit a dog",
       });
     }
@@ -90,67 +93,98 @@ export default function CreateDog() {
   // RENDER
 
   return (
-    <div className={style.container}>
-      <NavLink to="/home">Return Home</NavLink>
-      <form onChange={handleChange} onSubmit={handleSubmit}>
-        <label>Raza: </label>
-        <input type="text" id="name" />
-        <p>{errors.name}</p>
-        <br />
-        <label>
-          Años de vida:
-          <br />
-          <label>Minimo: </label>
-          <input type="number" id="life_span1" />
-          <label>Maximo: </label>
-          <input type="number" id="life_span2" />
-          <p>{errors.life_span}</p>
-        </label>
-        <br />
-        <label>
-          Altura (en cm):
-          <br />
-          <label>Minima: </label>
-          <input type="number" id="minHeight" />
-          <label>Maxima: </label>
-          <input type="number" id="maxHeight" />
-          <p>{errors.height}</p>
-        </label>
-        <br />
-        <label>
-          Peso (en Kg):
-          <br />
-          <label>Minimo: </label>
-          <input type="number" id="minWeight" />
-          <label>Maximo: </label>
-          <input type="number" id="maxWeight" />
-          <p>{errors.weight}</p>
-        </label>
-        <br />
-        <label>Image URL: </label>
-        <input type="url" id="image" />
-        <p>{errors.image}</p>
-        <fieldset>
-          <legend>Temperamentos: </legend>
-          <div>
-            {temperaments.map((temp, index) => (
-              <div key={index}>
-                <input key={index} type="checkbox" value={temp} />
-                {temp}
-              </div>
-            ))}
+    <div className={style.createMain}>
+      <img
+        src={bone}
+        alt=""
+        style={{ zIndex: `0` }}
+        className={style.boneImg}
+      />
+      <NavLink to="/home" title="Return to home"></NavLink>
+      <form
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        className={style.form}
+      >
+        <h1>Create your own dog!</h1>
+
+        <div className={style.contentContainer}>
+          {/**/}
+          <div className={style.textInputs}>
+            <div className={style.singleInput}>
+              <label>Breed name: </label>
+              <input type="text" id="name" />
+            </div>
+            <p>{errors.name}</p>
+            <div className={style.numberInputs}>
+              <fieldset>
+                <legend>Life expectancy:</legend>
+                <label>From: </label>
+                <input type="number" id="life_span1" />
+                <label> to: </label>
+                <input type="number" id="life_span2" />
+                <p>{errors.life_span}</p>
+              </fieldset>
+
+              <fieldset>
+                <legend>Height (cm)</legend>
+                <label>From: </label>
+                <input type="number" id="minHeight" />
+                <label> to: </label>
+                <input type="number" id="maxHeight" />
+                <p>{errors.height}</p>
+              </fieldset>
+
+              <fieldset>
+                <legend>Weight (kg)</legend>
+                <label>From: </label>
+                <input type="number" id="minWeight" />
+                <label> to: </label>
+                <input type="number" id="maxWeight" />
+                <p>{errors.weight}</p>
+              </fieldset>
+            </div>
+
+            <div className={style.singleInput}>
+              <label>Image (URL): </label>
+              <input type="url" id="image" />
+            </div>
+            <p>{errors.image}</p>
           </div>
+
+          <fieldset className={style.temperaments}>
+            <legend>Temperaments: </legend>
+            <div className={style.tempContainer}>
+              {temperaments.map((temp, index) => (
+                <div key={index}>
+                  <input
+                    key={index}
+                    type="checkbox"
+                    value={temp}
+                    className={style.checkbox}
+                  />
+                  {temp}
+                </div>
+              ))}
+            </div>
+          </fieldset>
           {dogToPost.temperament.length < 3 ? (
-            <p>* Debes seleccionar al menos 3 temperamentos</p>
-          ) : null}
-        </fieldset>
-        {errors.message || dogToPost.temperament.length < 3 ? (
-          <button type="submit" disabled>
-            Submit
-          </button>
-        ) : (
-          <button type="submit">Submit</button>
-        )}
+            <p style={{ height: `1.5em`, alignSelf: `center` }}>
+              * At least 3 temperaments must be selected
+            </p>
+          ) : (
+            <p style={{ height: `1.5em` }}></p>
+          )}
+          <div className={style.buttonCont}>
+            {errors.message || dogToPost.temperament.length < 3 ? (
+              <button type="submit" disabled>
+                Submit
+              </button>
+            ) : (
+              <button type="submit">Submit</button>
+            )}
+          </div>
+        </div>
       </form>
     </div>
   );

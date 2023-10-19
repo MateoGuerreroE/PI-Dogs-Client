@@ -13,6 +13,8 @@ export default function SearchBar() {
     const { value } = document.getElementById("S_input");
     if (value) {
       dispatch(searchDog(value));
+      document.getElementsByName("origin")[0].value = "All";
+      document.getElementsByName("temperaments")[0].value = "All";
     } else {
       alert("Introduce una raza para poder buscarla");
     }
@@ -26,7 +28,13 @@ export default function SearchBar() {
       <input id="S_input" type="text" />
       <button onClick={handleClick}>Search</button>
       {dipslayedDogs.length < 2 ? (
-        <button onClick={() => dispatch(addAll())}>X</button>
+        <button
+          onClick={() => {
+            dispatch(addAll());
+          }}
+        >
+          X
+        </button>
       ) : null}
     </div>
   );

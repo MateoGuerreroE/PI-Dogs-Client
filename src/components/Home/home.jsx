@@ -7,9 +7,11 @@ export default function Home() {
 
   return (
     <div className={StyledHome.homeMain}>
-      <NavLink to="/createDog">Create your Dog</NavLink>
-      <SearchBar />
-      <Filters />
+      <div className={StyledHome.supBar}>
+        <NavLink to="/createDog">Create your Dog</NavLink>
+        <SearchBar />
+        <Filters />
+      </div>
       <DogCards />
     </div>
   );

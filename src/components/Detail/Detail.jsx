@@ -1,21 +1,13 @@
-import StyledDetail from "./Detail.module.css";
+import style from "./Detail.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 
 export default function Detail() {
   // LOCAL STATES
+  const [imageDim, setIamgeDim] = useState({ w: 0, h: 0 });
   const [dog, setDog] = useState([]);
   const { id } = useParams();
-
-  // GLOBAL STATES
-  const pagedDogs = useSelector((state) => state.pgDogs);
-
-  // UTILS (storage)
-
-  let visiblePosts;
-  let currentPage;
 
   // DIS/MOUNT/UPDATE
 
@@ -35,26 +27,54 @@ export default function Detail() {
   }, [id]);
 
   useEffect(() => {
-    visiblePosts = Number(sessionStorage.getItem("dogsToDisplay"));
-    currentPage = Number(sessionStorage.getItem("dogsToDisplay"));
-  }, [pagedDogs]);
-
-  // RENDER
+    let image = document.getElementById("dogimage");
+    setIamgeDim({ w: image ? image.naturalWidth : 0, h: image.naturalHeight });
+  }, [dog]);
 
   return (
-    <div>
-      <Link to="/home">Return</Link>
-      <p>ID: {dog.id}</p>
-      <img src={dog.image} alt={dog.name} />
-      <p>Nombre: {dog.name}</p>
-      <p>Altura: {dog.height} cm</p>
-      <p>Peso: {dog.height} kg</p>
-      {dog.temperament ? (
-        <p>Temperamentos: {dog.temperament.join(", ")}</p>
-      ) : (
-        <p>Temperamentos: </p>
-      )}
-      <p>Años de vida: {dog.life_span}</p>
+    <div className={style.mainDetail}>
+      <div
+        className={`${
+          imageDim.w > imageDim.h ? style.wideContainer : style.stretchContainer
+        }`}
+      >
+        <img src={dog.image} alt={dog.name} id="dogimage" />
+        <div className={style.infoContainer}>
+          {dog.created ? <h5>Created breed</h5> : <h5>Existing breed</h5>}
+          <h1>{dog.name}</h1>
+          <h3>ID: {dog.id}</h3>
+          <hr className={style.separator} />
+          <h4>Characteristics</h4>
+          <p>
+            <b>Height: </b> {dog.height} cm
+          </p>
+          <p>
+            <b>Weight: </b> {dog.weight} kg
+          </p>
+          {dog.temperament ? (
+            <p>
+              <b>Temperaments: </b> {dog.temperament.join(", ")}
+            </p>
+          ) : (
+            <p>
+              <b>Temperaments: </b>{" "}
+            </p>
+          )}
+          <p>
+            <b>Life expectancy: </b> {dog.life_span}
+          </p>
+        </div>
+        <Link to="/home" className={style.backButton}></Link>
+        {dog.created ? null : (
+          <a
+            className={style.googleSearch}
+            href={`https://www.google.com/search?client=firefox-b-d&q=${
+              dog.name && dog.name.split(" ").join("+")
+            }`}
+            target="_blank"
+          ></a>
+        )}
+      </div>
     </div>
   );
 }

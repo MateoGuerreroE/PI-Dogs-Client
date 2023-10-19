@@ -1,18 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { filterDogs } from "../../redux/actions";
-import { useState } from "react";
 
 export default function Filters() {
   // GLOBAL STATES
 
   const dispatch = useDispatch();
   const allDogs = useSelector((state) => state.allDogs);
-  const filteredDogs = useSelector((state) => state.filteredDogs);
   const temperaments = useSelector((state) => state.temperaments);
-
-  // LOCAL STATE
-
-  const [localDogs, setLocalDogs] = useState(filteredDogs);
 
   // HELPERS
 

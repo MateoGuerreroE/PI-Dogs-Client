@@ -10,21 +10,37 @@ export default function Ordering() {
   }
 
   return (
-    <div>
-      <p>Por nombre</p>
-      <button name="name" value="asc" onClick={handleClick}>
-        Ascendente
-      </button>
-      <button name="name" value="desc" onClick={handleClick}>
-        Descendente
-      </button>
-      <p>Por peso</p>
-      <button name="weight" value="asc" onClick={handleClick}>
-        Ascendente
-      </button>
-      <button name="weight" value="desc" onClick={handleClick}>
-        Descendente
-      </button>
+    <div className={style.orderContainer}>
+      <div className={style.nameOrder}>
+        <p>Name</p>
+        <button
+          name="name"
+          value="asc"
+          onClick={handleClick}
+          className={style.ascNameButton}
+        ></button>
+        <button
+          name="name"
+          value="desc"
+          onClick={handleClick}
+          className={style.descNameButton}
+        ></button>
+      </div>
+      <div className={style.weightOrder}>
+        <p>Weight</p>
+        <button
+          name="weight"
+          value="asc"
+          onClick={handleClick}
+          className={style.ascWButton}
+        ></button>
+        <button
+          name="weight"
+          value="desc"
+          onClick={handleClick}
+          className={style.descWButton}
+        ></button>
+      </div>
     </div>
   );
 }

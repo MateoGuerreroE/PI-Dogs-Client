@@ -8,7 +8,7 @@ export default function validateForm(input) {
   let objectToReturn = {};
   if (!regExName.test(input.name)) {
     objectToReturn.name =
-      "El nombre solo debe contener letras, no se permiten numeros o caracteres especiales.";
+      "Name must contain only letters, no special characters nor numbers";
   }
   validatorHelper(
     "height",
@@ -16,7 +16,7 @@ export default function validateForm(input) {
     input.maxHeight,
     regExNumbers,
     objectToReturn,
-    "La altura"
+    "Height"
   );
   validatorHelper(
     "weight",
@@ -24,7 +24,7 @@ export default function validateForm(input) {
     input.maxWeight,
     regExNumbers,
     objectToReturn,
-    "El peso"
+    "Weight"
   );
   validatorHelper(
     "life_span",
@@ -32,10 +32,10 @@ export default function validateForm(input) {
     input.life_span2,
     regExNumbers,
     objectToReturn,
-    "La esperanza de vida"
+    "Life expectancy"
   );
   if (!regExURL.test(input.image)) {
-    objectToReturn.image = "La URL de la imagen no es valida.";
+    objectToReturn.image = "The image URL is not valid";
   }
 
   let anyError = false;

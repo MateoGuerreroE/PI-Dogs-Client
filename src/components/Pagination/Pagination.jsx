@@ -15,8 +15,18 @@ export default function Pagination(props) {
   // HANDLERS
 
   function handleClick(event) {
-    props.setPage(Number(event.target.innerHTML));
-    setButton(Number(event.target.innerHTML));
+    if (event.target.innerHTML) {
+      props.setPage(Number(event.target.innerHTML));
+      setButton(Number(event.target.innerHTML));
+    } else {
+      if (event.target.id === "next") {
+        props.setPage(Number(sessionStorage.getItem("currentPage")) + 1);
+        setButton(Number(sessionStorage.getItem("currentPage")) + 1);
+      } else {
+        props.setPage(Number(sessionStorage.getItem("currentPage")) - 1);
+        setButton(Number(sessionStorage.getItem("currentPage")) - 1);
+      }
+    }
   }
 
   function handleAmmountPosted(event) {
