@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export default function Pagination(props) {
   // LOCAL STATES
   const [currentButton, setButton] = useState(
-    Number(sessionStorage.getItem("currentPage"))
+    Number(sessionStorage.getItem("currentPage") || 1)
   );
   const { totalPages } = props;
 

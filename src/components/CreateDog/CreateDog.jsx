@@ -156,7 +156,7 @@ export default function CreateDog() {
             <legend>Temperaments: </legend>
             <div className={style.tempContainer}>
               {temperaments.map((temp, index) => (
-                <div key={index}>
+                <div key={index} className={style.checkContainer}>
                   <input
                     key={index}
                     type="checkbox"

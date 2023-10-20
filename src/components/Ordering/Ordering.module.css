@@ -8,7 +8,7 @@
   left: 6.5%;
   display: flex;
   flex-direction: row;
-  gap: 1em;
+  gap: 2em;
 }
 
 .orderContainer p {
@@ -57,5 +57,5 @@
 
 .descWButton {
   background: url("../../content/weight-down.svg") no-repeat;
-  background-size: 96.5%;
+  background-size: 96.27%;
 }

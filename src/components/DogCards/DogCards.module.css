@@ -12,6 +12,7 @@
   justify-content: space-between;
   height: 5rem;
   background-color: white;
+  box-shadow: -1px 15px 26px -25px rgba(0, 0, 0, 0.59);
 }
 
 .CardsContainer {
@@ -22,6 +23,7 @@
 
 .splashIMG {
   position: fixed;
+  transform: scale(1.05);
   top: -5%;
   z-index: -1;
   overflow: hidden;

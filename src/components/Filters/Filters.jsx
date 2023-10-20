@@ -1,3 +1,4 @@
+import style from "./Filters.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { filterDogs } from "../../redux/actions";
 
@@ -45,7 +46,7 @@ export default function Filters() {
 
   // RENDER
   return (
-    <div>
+    <div className={style.filterContainer}>
       <select
         onChange={handleChange}
         name="origin"

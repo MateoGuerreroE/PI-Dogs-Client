@@ -1,7 +1,47 @@
+@font-face {
+  font-family: "Custom";
+  src: url("../../content/Jellee-Bold.woff");
+}
+
 .homeMain {
   color: black;
 }
 
 .supBar {
+  z-index: 2;
   background-color: white;
+  display: flex;
+  flex-direction: row;
+  height: 5rem;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.createButton p {
+  margin: 0;
+}
+
+.createButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 3rem;
+  font-family: "Custom";
+  font-size: 1.3vh;
+  text-decoration: none;
+  border: 3px solid black;
+  border-radius: 2em;
+  text-align: center;
+  color: black;
+  padding-left: 1em;
+  padding-right: 1em;
+  &:visited {
+    color: inherit;
+  }
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    background-color: aquamarine;
+    box-shadow: -1px 0px 14px -5px rgba(0, 0, 0, 0.75);
+  }
 }

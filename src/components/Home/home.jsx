@@ -8,9 +8,11 @@ export default function Home() {
   return (
     <div className={StyledHome.homeMain}>
       <div className={StyledHome.supBar}>
-        <NavLink to="/createDog">Create your Dog</NavLink>
-        <SearchBar />
+        <NavLink to="/createDog" className={StyledHome.createButton}>
+          <p>Create you Dog</p>
+        </NavLink>
         <Filters />
+        <SearchBar />
       </div>
       <DogCards />
     </div>

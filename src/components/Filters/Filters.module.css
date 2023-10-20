@@ -1,0 +1,8 @@
+.filterContainer {
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  left: 55px;
+}
