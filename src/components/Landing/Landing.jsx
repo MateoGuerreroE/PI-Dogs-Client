@@ -25,15 +25,11 @@ export default function Landing() {
         />
         <div className={StyledLanding.maintext}>
           <h1>Welcome to Individual Project: Dogs</h1>
-
           <p>
             On here you will be able to find many information regarding dog
             breeds around the globe! Whenever you are ready, just press the
             button to go home and get to know the page
           </p>
-          {/* <button>
-            <NavLink to="/home">Home</NavLink>
-          </button> */}
           <NavLink to="/home" className={StyledLanding.bone}>
             Home
           </NavLink>

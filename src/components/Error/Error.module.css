@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: aliceblue;
+  background-color: #effcff;
   background-image: url("../../content/backgroundLanding.svg");
   overflow: hidden;
 }
@@ -16,7 +16,7 @@
   align-items: center;
   width: 100%;
   padding: 1em;
-  background-color: white;
+  background-color: #c9e3ec;
   padding-top: 8vh;
   padding-bottom: 6vh;
   box-shadow: -1px 2px 136px -50px rgba(0, 0, 0, 0.75);
@@ -50,7 +50,7 @@
   border-radius: 5em;
 
   &:hover {
-    background-color: rgb(200, 229, 255);
+    background-color: rgb(47, 144, 255);
   }
   &:visited {
     color: inherit;

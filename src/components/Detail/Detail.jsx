@@ -2,12 +2,15 @@ import style from "./Detail.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import bckDog from "../../content/sampleDog.svg";
+import Loading from "../Loading/Loading";
 
 export default function Detail() {
   // LOCAL STATES
   const [imageDim, setIamgeDim] = useState({ w: 0, h: 0 });
   const [dog, setDog] = useState([]);
   const { id } = useParams();
+  const [loading, setLoading] = useState(true);
 
   // DIS/MOUNT/UPDATE
 
@@ -26,19 +29,50 @@ export default function Detail() {
     fetchData();
   }, [id]);
 
+  //* Loading
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
+  //* In order to know how to render card direction, this useEffect will load the widh and height into a state
+
   useEffect(() => {
     let image = document.getElementById("dogimage");
     setIamgeDim({ w: image ? image.naturalWidth : 0, h: image.naturalHeight });
   }, [dog]);
 
+  // HELPERS
+
+  function handleIMGError() {
+    const image = document.getElementById("dogimage");
+    image.src =
+      "https://static.vecteezy.com/system/resources/previews/016/461/442/non_2x/cute-dog-puppy-face-pet-animal-character-with-in-animated-cartoon-illustration-vector.jpg";
+  }
+
   return (
     <div className={style.mainDetail}>
+      {loading ? <Loading /> : null}
+      <img
+        src={bckDog}
+        alt="RefDog"
+        className={`${
+          imageDim.w > imageDim.h ? style.wideDog : style.stretchDog
+        }`}
+      />
       <div
         className={`${
           imageDim.w > imageDim.h ? style.wideContainer : style.stretchContainer
         }`}
       >
-        <img src={dog.image} alt={dog.name} id="dogimage" />
+        <img
+          src={dog.image}
+          alt={dog.name}
+          id="dogimage"
+          onError={handleIMGError}
+        />
         <div className={style.infoContainer}>
           {dog.created ? <h5>Created breed</h5> : <h5>Existing breed</h5>}
           <h1>{dog.name}</h1>

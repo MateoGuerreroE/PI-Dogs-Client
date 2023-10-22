@@ -9,9 +9,9 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: aliceblue;
+  background-color: white;
   background: var(--bg);
-  --bg: rgb(215, 235, 253);
+  --bg: #effcff;
   --color: #69a0f1;
   background-image: url("../../content/backgroundLanding.svg");
   background-repeat: repeat;
@@ -37,7 +37,7 @@
   width: 35vw;
   text-align: center;
   padding: 2em;
-  background-color: white;
+  background-color: #c9e3ec;
   border: 4px solid black;
   border-radius: 2em;
   box-shadow: 0px 1px 58px -16px rgba(0, 0, 0, 0.75);

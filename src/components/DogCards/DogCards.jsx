@@ -25,6 +25,17 @@ export default function DogCards() {
   // VARIABLES AND HELPERS
 
   let totalPages = Math.ceil(allDogs.length / visiblePosts);
+  let navbar = document.getElementById("navbar")
+    ? document.getElementById("navbar")
+    : {};
+  let sticky = 315; // Set this to const as when comp reloads offset will be 0 and will keep It sticky.
+  window.onscroll = function () {
+    if (window.scrollY >= sticky) {
+      navbar.className = `${StyledCards.stickyNav}`;
+    } else {
+      navbar.className = `${StyledCards.pages_order}`;
+    }
+  };
 
   // ON MOUNT/DISMOUNT/UPDATE
 
@@ -40,7 +51,7 @@ export default function DogCards() {
   return (
     <div className={StyledCards.CardsContainer}>
       <img src={splashbckg} alt="" className={StyledCards.splashIMG} />
-      <div className={StyledCards.pages_order}>
+      <div className={StyledCards.pages_order} id="navbar">
         <Ordering />
         <Pagination
           setPage={setPage}

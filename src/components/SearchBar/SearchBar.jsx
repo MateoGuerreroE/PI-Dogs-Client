@@ -1,7 +1,6 @@
 import style from "./SearchBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { searchDog, addAll } from "../../redux/actions";
-import { useEffect } from "react";
 
 export default function SearchBar() {
   // GLOBAL STATES
@@ -11,10 +10,6 @@ export default function SearchBar() {
     filter1: sessionStorage.getItem("temperaments"),
     filter2: sessionStorage.getItem("origin"),
   };
-
-  useEffect(() => {
-    console.log(currentFilter);
-  }, [currentFilter]);
 
   // HANDLERS
 

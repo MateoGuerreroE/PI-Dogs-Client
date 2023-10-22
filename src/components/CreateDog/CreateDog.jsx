@@ -6,6 +6,7 @@ import { validateForm } from "../../helpers";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import bone from "../../content/bone.svg";
+import RefDog from "../../content/createDogRef.svg";
 
 export default function CreateDog() {
   //LOCAL STATES
@@ -99,6 +100,12 @@ export default function CreateDog() {
         alt=""
         style={{ zIndex: `0` }}
         className={style.boneImg}
+      />
+      <img
+        src={RefDog}
+        alt=""
+        style={{ zIndex: `0` }}
+        className={style.dogImg}
       />
       <NavLink to="/home" title="Return to home"></NavLink>
       <form

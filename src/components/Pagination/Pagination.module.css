@@ -74,7 +74,7 @@
   border: 2.5px black solid;
   border-radius: 50%;
   &:hover {
-    background-color: aquamarine;
+    background-color: rgb(47, 144, 255);
     cursor: pointer;
   }
   font-family: "Custom";
@@ -116,5 +116,6 @@
   left: 40%;
   align-self: center;
   font-family: "Custom";
-  font-size: small;
+  color: rgb(70, 70, 70);
+  /* font-size: small; */
 }

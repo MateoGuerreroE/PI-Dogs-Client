@@ -51,6 +51,7 @@ export default function Filters() {
         onChange={handleChange}
         name="origin"
         defaultValue={sessionStorage.getItem("origin") || "All Dogs"}
+        className={style.name}
       >
         <option value="All">All Dogs</option>
         {anyCreated ? <option value="Listed">Listed</option> : null}
@@ -60,6 +61,7 @@ export default function Filters() {
         onChange={handleChange}
         name="temperaments"
         defaultValue={sessionStorage.getItem("temperaments") || "All"}
+        className={style.origin}
       >
         <option value="All">All</option>
         {temperaments.map((temperament) => (
