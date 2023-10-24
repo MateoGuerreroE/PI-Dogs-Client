@@ -37,24 +37,20 @@ export default function CreateDog() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  let temperamentList = [];
 
   // HANDLERS
 
   function handleChange(event) {
+    let temperamentList = [...dogToPost.temperament];
     if (event.target.type === "checkbox") {
       if (event.target.checked) {
         temperamentList.push(event.target.value);
-        setDogToPost({
-          ...dogToPost,
-          temperament: [...dogToPost.temperament, ...temperamentList],
-        });
       } else {
         temperamentList = dogToPost.temperament.filter(
           (temp) => temp != event.target.value
         );
-        setDogToPost({ ...dogToPost, temperament: [...temperamentList] });
       }
+      setDogToPost({ ...dogToPost, temperament: temperamentList });
     } else {
       setDogToPost({ ...dogToPost, [event.target.id]: event.target.value });
       setErrors(
@@ -65,7 +61,8 @@ export default function CreateDog() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    //! TEMPERAMENTS MISSING.
+
+    //? Can become helper to reduce code.
     let newObj = {
       name: dogToPost.name,
       height: `${dogToPost.minHeight} - ${dogToPost.maxHeight}`,
@@ -75,20 +72,31 @@ export default function CreateDog() {
       temperament: dogToPost.temperament,
     };
     let existing = allDogs.find((dog) => dog.name === dogToPost.name);
-    if (!existing) {
-      await axios.post(`http://${window.location.hostname}:3001/dogs`, newObj);
-      dispatch(addAll());
-      navigate("/home");
-    } else {
-      document.getElementById("name").value = "";
-      alert(
-        "The breed name you are trying to add already exists! Try a new one"
-      );
-      setErrors({
-        ...errors,
-        name: "Name must contain only letters, no special characters nor numbers",
-        message: "Complete corrently all information to submit a dog",
-      });
+    try {
+      if (!existing) {
+        const response = await axios.post(
+          `http://${window.location.hostname}:3001/dogs`,
+          newObj
+        );
+        dispatch(addAll());
+        alert(response.data.message);
+        setTimeout(() => {
+          navigate("/home");
+        }, 400);
+      } else {
+        document.getElementById("name").value = "";
+        alert(
+          "The breed name you are trying to add already exists! Try a new one"
+        );
+        setErrors({
+          ...errors,
+          name: "Name must contain only letters, no special characters nor numbers",
+          message: "Complete corrently all information to submit a dog",
+        });
+      }
+    } catch (error) {
+      const { data } = error.response;
+      alert(data.message);
     }
   }
   // RENDER

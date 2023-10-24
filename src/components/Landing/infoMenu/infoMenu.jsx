@@ -2,11 +2,11 @@ import style from "./infoMenu.module.css";
 import profile from "../../../content/IMG_5728.png";
 import gitlogo from "../../../content/25231.png";
 
-let InfoMenuHeight;
-function InfoMenu() {
+export default function InfoMenu() {
   const openNewTab = (url) => {
     window.open(url, "_blank", "noreferrer");
   };
+
   return (
     <div className={style.info}>
       <div className={style.square}></div>
@@ -31,5 +31,3 @@ function InfoMenu() {
     </div>
   );
 }
-
-export { InfoMenu, InfoMenuHeight };

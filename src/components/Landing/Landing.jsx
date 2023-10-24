@@ -2,16 +2,13 @@ import StyledLanding from "./Landing.module.css";
 import mainDog from "../../content/landing_orangeDog.svg";
 import { NavLink } from "react-router-dom";
 import info from "../../content/info-circle-svgrepo-com.svg";
-import { InfoMenu, InfoMenuHeight } from "./infoMenu/infoMenu";
+import InfoMenu from "./infoMenu/infoMenu";
 import { useState } from "react";
 
 export default function Landing() {
   const [showInfo, setShowInfo] = useState(false);
-  const [containerHeight, setCH] = useState(0);
 
   function onClickInfo() {
-    if (!showInfo) setCH(InfoMenuHeight);
-    else setCH(0);
     setShowInfo(!showInfo);
   }
 

@@ -28,7 +28,7 @@ export default function Home() {
     <div className={StyledHome.homeMain}>
       {loading ? <Loading className={StyledHome.loading} /> : null}
       <div className={StyledHome.mainImage}>
-        <img src={homeDog} alt="" />
+        <img src={homeDog} alt="homeImage" />
       </div>
       <div className={StyledHome.supBar}>
         <NavLink to="/createDog" className={StyledHome.createButton}>

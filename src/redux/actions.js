@@ -19,7 +19,8 @@ export function addAll() {
         payload: data,
       });
     } catch (error) {
-      alert("Error reaching dogs data");
+      const { data } = error.response;
+      alert(data.message);
     }
   };
 }
@@ -29,9 +30,11 @@ export function searchDog(name) {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);
+      if (data.message) return alert(data.message);
       return dispatch({ type: SEARCH_DOG, payload: data });
     } catch (error) {
-      alert("Raza no encontrada");
+      const { data } = error.response;
+      alert(data.message);
     }
   };
 }
@@ -43,7 +46,8 @@ export function updateAttitudes() {
       const { data } = await axios.get(endpoint);
       return dispatch({ type: UPDATE_TEMPERAMENTS, payload: data });
     } catch (error) {
-      alert("Temperamentos no encontrados");
+      const { data } = error.response;
+      alert(data.message);
     }
   };
 }

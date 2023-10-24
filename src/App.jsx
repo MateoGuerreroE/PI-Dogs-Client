@@ -18,6 +18,11 @@ function App() {
   useEffect(() => {
     dispatch(addAll());
     dispatch(updateAttitudes());
+    // This on reload of home / other view, so filtering resets.
+    if (sessionStorage.getItem("temperaments"))
+      sessionStorage.setItem("temperaments", "All");
+    if (sessionStorage.getItem("origin"))
+      sessionStorage.setItem("origin", "All");
   }, []);
 
   // RENDER

@@ -72,6 +72,19 @@ export default function renderPagination(
   if (TotalPages === 7) {
     return (
       <div className={style.pageContainer}>
+        <div className={style.postSelector}>
+          <p>Dogs per page: </p>
+          <select
+            defaultValue={
+              sessionStorage.getItem("visiblePosts") || visiblePosts
+            }
+            onChange={functionPosted}
+          >
+            <option value="8">8</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+        </div>
         <div className={style.Pages}>
           <button onClick={functionClick}>1</button>
           <button onClick={functionClick}>2</button>
@@ -87,6 +100,19 @@ export default function renderPagination(
   if (TotalPages < 7) {
     return (
       <div className={style.pageContainer}>
+        <div className={style.postSelector}>
+          <p>Dogs per page: </p>
+          <select
+            defaultValue={
+              sessionStorage.getItem("visiblePosts") || visiblePosts
+            }
+            onChange={functionPosted}
+          >
+            <option value="8">8</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+        </div>
         <div className={style.Pages}>
           <button onClick={functionClick}>1</button>
           {TotalPages - 1 > 0 ? (
