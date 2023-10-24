@@ -10,7 +10,7 @@ import {
 } from "./action-types";
 
 export function addAll() {
-  const endpoint = `http://${window.location.hostname}:3001/dogs`;
+  const endpoint = "/dogs";
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);
@@ -26,7 +26,7 @@ export function addAll() {
 }
 
 export function searchDog(name) {
-  const endpoint = `http://${window.location.hostname}:3001/dogs/name?="${name}"`;
+  const endpoint = `/dogs/name?="${name}"`;
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);
@@ -40,7 +40,7 @@ export function searchDog(name) {
 }
 
 export function updateAttitudes() {
-  const endpoint = `http://${window.location.hostname}:3001/temperaments/set`;
+  const endpoint = `/temperaments/set`;
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);

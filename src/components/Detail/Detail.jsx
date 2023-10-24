@@ -25,9 +25,7 @@ export default function Detail() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data } = await axios.get(
-          `http://${window.location.hostname}:3001/dogs/${id}`
-        );
+        const { data } = await axios.get(`/dogs/${id}`);
         setDog(data);
       } catch (error) {
         const { data } = error.response;
@@ -63,7 +61,7 @@ export default function Detail() {
 
   async function handleDelete(id) {
     try {
-      const response = await axios.delete(`http://localhost:3001/dogs/${id}`);
+      const response = await axios.delete(`/dogs/${id}`);
       if (response.status === 200) {
         alert(response.data.message);
         dispatch(addAll());

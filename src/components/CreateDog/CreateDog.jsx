@@ -74,10 +74,7 @@ export default function CreateDog() {
     let existing = allDogs.find((dog) => dog.name === dogToPost.name);
     try {
       if (!existing) {
-        const response = await axios.post(
-          `http://${window.location.hostname}:3001/dogs`,
-          newObj
-        );
+        const response = await axios.post("/dogs", newObj);
         dispatch(addAll());
         alert(response.data.message);
         setTimeout(() => {

@@ -55,7 +55,7 @@ export default function Edit(props) {
         prop = "life_span";
         localInfo = `${info} years`;
       }
-      let endpoint = `http://localhost:3001/dogs?${prop}=${localInfo}`;
+      let endpoint = `/dogs?${prop}=${localInfo}`;
       const response = await axios.put(endpoint, {
         id: props.id,
       });
