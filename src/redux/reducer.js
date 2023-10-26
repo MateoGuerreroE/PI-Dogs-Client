@@ -27,7 +27,7 @@ export default function reducer(state = initialState, action) {
     case SEARCH_DOG:
       return {
         ...state,
-        filteredDogs: [payload],
+        filteredDogs: payload,
       };
 
     case SLICE_DOGS:
@@ -49,12 +49,7 @@ export default function reducer(state = initialState, action) {
         }
       }
       if (param === "weight") {
-        if (order === "asc") {
-          result = sortingByWeight(state.filteredDogs.slice());
-        }
-        if (order === "desc") {
-          result = sortingByWeight(state.filteredDogs.slice()).reverse();
-        }
+        result = sortingByWeight(state.filteredDogs.slice(), order);
       }
       return {
         ...state,
