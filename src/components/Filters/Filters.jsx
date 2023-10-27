@@ -21,17 +21,18 @@ export default function Filters() {
 
   function handleChange(event) {
     const originFilter = document.getElementsByName("origin")[0].value; // const[0].value
-    const nameFilter = document.getElementsByName("temperaments")[0].value;
-    if (originFilter == "All" || nameFilter == "All") {
+    const temperamentFilter =
+      document.getElementsByName("temperaments")[0].value;
+    if (originFilter == "All" || temperamentFilter == "All") {
       // Did this so that when returning to "All" on any filter and the other
       // has a value active, leaves the active filter.
       let value = null;
       let name = null;
       if (originFilter == "All") {
-        value = nameFilter;
+        value = temperamentFilter;
         name = "temperaments";
       }
-      if (nameFilter == "All") {
+      if (temperamentFilter == "All") {
         value = originFilter;
         name = "origin";
       }
@@ -39,7 +40,7 @@ export default function Filters() {
     } else if (event.target.name === "temperaments" && originFilter !== "All") {
       dispatch(filterDogs(event.target.value, "temperaments", originFilter));
     } else {
-      dispatch(filterDogs(event.target.value, "origin", nameFilter));
+      dispatch(filterDogs(event.target.value, "origin", temperamentFilter));
     }
     sessionStorage.setItem(event.target.name, event.target.value);
   }

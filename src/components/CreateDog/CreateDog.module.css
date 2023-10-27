@@ -22,7 +22,7 @@
 .createMain {
   background-image: url("../../content/backgroundLanding.svg");
   background-color: #effcff;
-  height: 115vh;
+  height: 1500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -63,9 +63,9 @@
 }
 
 .temperaments {
-  margin-top: 3vh;
+  margin-top: 39px;
   width: 90%;
-  height: 20vh;
+  height: 260px;
   overflow-x: hidden;
   overflow-y: scroll;
   align-self: center;
@@ -86,15 +86,15 @@
   flex-direction: column;
   align-self: center;
   width: 70%;
-  margin-top: 1vh;
-  margin-bottom: 2vh;
+  margin-top: 13px;
+  margin-bottom: 26px;
 }
 
 .numberInputs {
   display: flex;
   flex-direction: column;
-  margin-top: 3vh;
-  margin-bottom: 3vh;
+  margin-top: 40px;
+  margin-bottom: 40px;
   text-align: center;
   gap: 0.5em;
 }
@@ -142,13 +142,13 @@ input::-webkit-inner-spin-button {
 .contentContainer {
   display: flex;
   flex-direction: column;
-  padding: 5vh;
+  padding: 65px;
   height: 80%;
 }
 
 .createMain h1 {
-  margin-top: 6vh;
-  margin-bottom: 3vh;
+  margin-top: 78px;
+  margin-bottom: 39px;
   text-align: center;
   font-family: "Custom";
   font-size: 2vw;
@@ -171,7 +171,7 @@ input::-webkit-inner-spin-button {
 .buttonCont {
   display: flex;
   flex-direction: column;
-  height: 10vh;
+  height: 130px;
   justify-content: center;
 }
 
@@ -180,7 +180,7 @@ input::-webkit-inner-spin-button {
   align-self: center;
   height: 30%;
   font-family: "Custom";
-  font-size: 1.5vh;
+  font-size: 1.2em;
   background-color: inherit;
   border: solid 2px;
   border-radius: 1em;
