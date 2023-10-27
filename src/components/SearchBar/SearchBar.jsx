@@ -34,7 +34,12 @@ export default function SearchBar() {
 
   return (
     <div className={style.searchContainer}>
-      <input className={style.searchInput} id="S_input" type="text" />
+      <input
+        className={style.searchInput}
+        id="S_input"
+        type="text"
+        onKeyDown={handleClick}
+      />
       <a className={style.searchButton} onClick={handleClick}></a>
 
       {dipslayedDogs < allDogs &&
