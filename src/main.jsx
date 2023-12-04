@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
@@ -17,7 +16,7 @@ import axios from "axios";
 // axios.defaults.baseURL = "http://localhost:3001"
 
 //Deployment
-axios.defaults.baseURL = "https://pi-dogs-server-mg.up.railway.app";
+axios.defaults.baseURL = "https://pidogs-server.onrender.com";
 
 //* Rendering in all paths App
 const router = createBrowserRouter([
